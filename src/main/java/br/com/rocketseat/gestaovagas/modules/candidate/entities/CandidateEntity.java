@@ -1,4 +1,4 @@
-package br.com.rocketseat.gestaovagas.modules.candidate;
+package br.com.rocketseat.gestaovagas.modules.candidate.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
