@@ -18,15 +18,17 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // http.csrf(AbstractHttpConfigurer::disable);
-        http.csrf(csrf -> csrf.disable())
+        return http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/candidate").permitAll()
+                    auth
+                            .requestMatchers("/candidate").permitAll()
                             .requestMatchers("/company").permitAll()
                             .requestMatchers("/auth/company").permitAll();
                     auth.anyRequest().authenticated();
                 })
-                .addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
-        return http.build();
+                .addFilterBefore(securityFilter, BasicAuthenticationFilter.class)
+                .build();
     }
 
     @Bean
