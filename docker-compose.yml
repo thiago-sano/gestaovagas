@@ -2,11 +2,17 @@ version: '4.39.0'
 
 services:
   postgres:
-    container_name: gestaovagas_postgres
+    container_name: rocketseat-gestaovagas
     image: postgres
     ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=gestaovagas
+      - POSTGRES_DB=rocketseat-gestaovagas
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+    driver: local
