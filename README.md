@@ -27,6 +27,11 @@ Para que seja retornada as informações do _candidate_, é necessário que um u
 - Maven
 - Apace Tomcat
 - Postman
+- Swagger
+
+## Swagger
+`http://localhost:8080/swagger-ui/index.html`  
+Auxilia na documentação a mapeamento de rotas da API. Também pode ser utilizado para testar requisições HTTP, substituindo o uso do Postman.
 
 ## API Requests
 
@@ -87,7 +92,7 @@ Modelo de json passado no body da requisição
 ```
 
 #### Create job
-`localhost:8080/company/job`  
+`localhost:8080/company/job/`  
 Bearer Token gerado na autenticação deve ser passado em Authorization  
 Modelo de json passado no body da requisição
 ````json
