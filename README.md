@@ -28,6 +28,77 @@ Para que seja retornada as informações do _candidate_, é necessário que um u
 - Apace Tomcat
 - Postman
 
+## API Requests
+
+### Candidate
+
+#### Create
+`localhost:8080/candidate`  
+Modelo de json passado no body da requisição
+```json
+{
+    "username": "josedesouza",
+    "name": "Jose de Souza",
+    "email": "jose@gmail.com",
+    "password": "1234567890",
+    "description": "Desenvolvedor Java Pleno com 3 anos de experiência."
+}
+```
+
+#### Authentication
+`localhost:8080/candidate/auth`  
+Modelo de json passado no body da requisição
+```json
+{
+    "username": "mariadesouza",
+    "password": "maria@1234"
+}
+```
+
+#### Get candidate
+`localhost:8080/candidate/`  
+Bearer Token gerado na autenticação deve ser passado em Authorization
+
+
+### Company
+
+#### Create
+`localhost:8080/company`  
+Modelo de json passado no body da requisição
+```json
+{
+    "username": "java_company",
+    "password": "1234567890",
+    "email": "java@company.com",
+    "name": "Java Jobs",
+    "website": "https://javajobs.com.br",
+    "description": "Empresa responsável por vagas de Java"
+}
+```
+
+#### Authentication
+`localhost:8080/company/auth`  
+Modelo de json passado no body da requisição
+```json
+{
+    "username": "java_company",
+    "password": "1234567890"
+}
+```
+
+#### Create job
+`localhost:8080/company/job`  
+Bearer Token gerado na autenticação deve ser passado em Authorization  
+Modelo de json passado no body da requisição
+````json
+{
+    "companyId": "35d55a35-f11c-4337-b8ec-afe52602b63a",
+    "benefits": "GymPass, Plano de Saúde, Day off no aniversário, Vale Alimentação e Refeição",
+    "description": "Vaga para pessoa desenvolvedora Java, que deseja trabalhar com Spring Boot 3.0",
+    "level": "JUNIOR"
+}
+````
+
 # Autor
 Thiago Sano
 
