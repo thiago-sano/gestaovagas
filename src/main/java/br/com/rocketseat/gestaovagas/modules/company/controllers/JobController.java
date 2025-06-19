@@ -28,7 +28,7 @@ public class JobController {
     @Autowired
     private CreateJobUseCase createJobUseCase;
 
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasRole('COMPANY')")
     @Tag(name = "Vagas", description = "Informações das vagas")
     @Operation(summary = "Cadastro de vagas", description = "Essa função é responsável por cadastrar as vagas dentro da empresa")

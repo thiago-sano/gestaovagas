@@ -61,7 +61,7 @@ Modelo de json passado no body da requisição
 ```
 
 #### Get candidate
-`localhost:8080/candidate/`  
+`localhost:8080/candidate`  
 Bearer Token gerado na autenticação deve ser passado em Authorization
 
 
@@ -92,7 +92,7 @@ Modelo de json passado no body da requisição
 ```
 
 #### Create job
-`localhost:8080/company/job/`  
+`localhost:8080/company/job`  
 Bearer Token gerado na autenticação deve ser passado em Authorization  
 Modelo de json passado no body da requisição
 ````json

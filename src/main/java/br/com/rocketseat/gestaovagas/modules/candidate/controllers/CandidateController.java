@@ -55,7 +55,7 @@ public class CandidateController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasRole('CANDIDATE')")
     @Operation(summary = "Perfil do candidato", description = "Essa função é responsável por buscar as informações do perfil do candidato")
     @ApiResponses({
