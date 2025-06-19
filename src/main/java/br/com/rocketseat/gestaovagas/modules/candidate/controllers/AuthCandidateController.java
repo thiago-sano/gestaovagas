@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,12 +26,13 @@ public class AuthCandidateController {
 
     @PostMapping("/auth")
     @Operation(summary = "Autenticação de candidato", description = "Essa função é responsável pela autenticação do candidato")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {
+    @ApiResponse(
+            responseCode = "200",
+            content = {
                     @Content(schema = @Schema(implementation = AuthCandidateResponseDTO.class))
-            }),
-            @ApiResponse(responseCode = "401", description = "Unauthorized")
-    })
+            }
+    )
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
     public ResponseEntity<Object> auth(@RequestBody AuthCandidateRequestDTO authCandidateRequestDTO) {
 
         try {

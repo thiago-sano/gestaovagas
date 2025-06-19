@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +25,13 @@ public class CompanyController {
 
     @PostMapping
     @Operation(summary = "Cadastro de empresa", description = "Essa função é responsável por cadastrar uma empresa")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {
+    @ApiResponse(
+            responseCode = "200",
+            content = {
                     @Content(schema = @Schema(implementation = CompanyEntity.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "Empresa já existe")
-    })
+            }
+    )
+    @ApiResponse(responseCode = "400", description = "Empresa já existe")
     public ResponseEntity<Object> create(@Valid @RequestBody CompanyEntity companyEntity) {
         try {
             var result = this.createCompanyUseCase.execute(companyEntity);
