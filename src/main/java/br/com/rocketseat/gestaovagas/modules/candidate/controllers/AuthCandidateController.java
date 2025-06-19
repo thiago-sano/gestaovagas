@@ -2,7 +2,7 @@ package br.com.rocketseat.gestaovagas.modules.candidate.controllers;
 
 import br.com.rocketseat.gestaovagas.modules.candidate.dto.AuthCandidateRequestDTO;
 import br.com.rocketseat.gestaovagas.modules.candidate.dto.AuthCandidateResponseDTO;
-import br.com.rocketseat.gestaovagas.modules.candidate.useCases.AuthCandidateUseCase;
+import br.com.rocketseat.gestaovagas.modules.candidate.usecases.AuthCandidateUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

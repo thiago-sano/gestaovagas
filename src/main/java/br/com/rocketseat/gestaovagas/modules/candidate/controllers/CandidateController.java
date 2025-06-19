@@ -2,9 +2,9 @@ package br.com.rocketseat.gestaovagas.modules.candidate.controllers;
 
 import br.com.rocketseat.gestaovagas.modules.candidate.dto.ProfileCandidateResponseDTO;
 import br.com.rocketseat.gestaovagas.modules.candidate.entities.CandidateEntity;
-import br.com.rocketseat.gestaovagas.modules.candidate.useCases.CreateCandidateUseCase;
-import br.com.rocketseat.gestaovagas.modules.candidate.useCases.ListAllJobsByFilterUseCase;
-import br.com.rocketseat.gestaovagas.modules.candidate.useCases.ProfileCandidateUseCase;
+import br.com.rocketseat.gestaovagas.modules.candidate.usecases.CreateCandidateUseCase;
+import br.com.rocketseat.gestaovagas.modules.candidate.usecases.ListAllJobsByFilterUseCase;
+import br.com.rocketseat.gestaovagas.modules.candidate.usecases.ProfileCandidateUseCase;
 import br.com.rocketseat.gestaovagas.modules.company.entities.JobEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

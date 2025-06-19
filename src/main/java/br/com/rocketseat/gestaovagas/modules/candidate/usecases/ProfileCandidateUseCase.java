@@ -1,4 +1,4 @@
-package br.com.rocketseat.gestaovagas.modules.candidate.useCases;
+package br.com.rocketseat.gestaovagas.modules.candidate.usecases;
 
 import br.com.rocketseat.gestaovagas.modules.candidate.dto.ProfileCandidateResponseDTO;
 import br.com.rocketseat.gestaovagas.modules.candidate.repositories.CandidateRepository;

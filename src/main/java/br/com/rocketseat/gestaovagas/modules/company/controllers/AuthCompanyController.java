@@ -2,7 +2,7 @@ package br.com.rocketseat.gestaovagas.modules.company.controllers;
 
 import br.com.rocketseat.gestaovagas.modules.company.dto.AuthCompanyDTO;
 import br.com.rocketseat.gestaovagas.modules.company.dto.AuthCompanyResponseDTO;
-import br.com.rocketseat.gestaovagas.modules.company.useCases.AuthCompanyUseCase;
+import br.com.rocketseat.gestaovagas.modules.company.usecases.AuthCompanyUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

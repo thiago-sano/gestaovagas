@@ -1,7 +1,7 @@
 package br.com.rocketseat.gestaovagas.modules.company.controllers;
 
 import br.com.rocketseat.gestaovagas.modules.company.entities.CompanyEntity;
-import br.com.rocketseat.gestaovagas.modules.company.useCases.CreateCompanyUseCase;
+import br.com.rocketseat.gestaovagas.modules.company.usecases.CreateCompanyUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

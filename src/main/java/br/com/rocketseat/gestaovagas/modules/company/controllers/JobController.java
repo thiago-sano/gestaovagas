@@ -2,7 +2,7 @@ package br.com.rocketseat.gestaovagas.modules.company.controllers;
 
 import br.com.rocketseat.gestaovagas.modules.company.dto.CreateJobDTO;
 import br.com.rocketseat.gestaovagas.modules.company.entities.JobEntity;
-import br.com.rocketseat.gestaovagas.modules.company.useCases.CreateJobUseCase;
+import br.com.rocketseat.gestaovagas.modules.company.usecases.CreateJobUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

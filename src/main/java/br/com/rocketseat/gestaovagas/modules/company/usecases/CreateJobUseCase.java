@@ -1,4 +1,4 @@
-package br.com.rocketseat.gestaovagas.modules.company.useCases;
+package br.com.rocketseat.gestaovagas.modules.company.usecases;
 
 import br.com.rocketseat.gestaovagas.modules.company.entities.JobEntity;
 import br.com.rocketseat.gestaovagas.modules.company.repositories.JobRespository;
