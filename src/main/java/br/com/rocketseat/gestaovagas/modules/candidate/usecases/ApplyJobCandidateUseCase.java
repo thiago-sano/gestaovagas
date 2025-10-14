@@ -2,9 +2,9 @@ package br.com.rocketseat.gestaovagas.modules.candidate.usecases;
 
 import br.com.rocketseat.gestaovagas.exceptions.JobNotFoundException;
 import br.com.rocketseat.gestaovagas.exceptions.UserNotFoundException;
+import br.com.rocketseat.gestaovagas.modules.candidate.repositories.ApplyJobRepository;
 import br.com.rocketseat.gestaovagas.modules.candidate.repositories.CandidateRepository;
 import br.com.rocketseat.gestaovagas.modules.company.repositories.JobRespository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -16,10 +16,12 @@ public class ApplyJobCandidateUseCase {
 
     private final JobRespository jobRespository;
 
-    @Autowired
-    public ApplyJobCandidateUseCase(CandidateRepository candidateRepository, JobRespository jobRespository) {
+    private final ApplyJobRepository applyJobRepository;
+
+    public ApplyJobCandidateUseCase(CandidateRepository candidateRepository, JobRespository jobRespository, ApplyJobRepository applyJobRepository) {
         this.candidateRepository = candidateRepository;
         this.jobRespository = jobRespository;
+        this.applyJobRepository = applyJobRepository;
     }
 
     public void execute(UUID candidateId, UUID jobId) {
