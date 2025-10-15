@@ -49,31 +49,31 @@ class ApplyJobCandidateUseCaseTest {
 
     @Test
     void should_not_be_able_to_apply_job_with_job_not_found() {
-        UUID candidateId = UUID.randomUUID();
+        UUID idCandidate = UUID.randomUUID();
         CandidateEntity candidateEntity = new CandidateEntity();
-        candidateEntity.setId(candidateId);
+        candidateEntity.setId(idCandidate);
 
-        when(candidateRepository.findById(candidateId)).thenReturn(Optional.of(candidateEntity));
-        assertThrows(JobNotFoundException.class, () -> applyJobCandidateUseCase.execute(candidateId, null));
+        when(candidateRepository.findById(idCandidate)).thenReturn(Optional.of(candidateEntity));
+        assertThrows(JobNotFoundException.class, () -> applyJobCandidateUseCase.execute(idCandidate, null));
     }
 
     @Test
     void should_be_able_to_create_a_new_apply_job() {
         // GIVEN
-        UUID candidateId = UUID.randomUUID();
-        UUID jobId = UUID.randomUUID();
+        UUID idCandidate = UUID.randomUUID();
+        UUID idJob = UUID.randomUUID();
 
         ApplyJobEntity applyJobCreated = ApplyJobEntity.builder()
                 .id(UUID.randomUUID())
                     .build();
 
         // WHEN
-        when(candidateRepository.findById(candidateId)).thenReturn(Optional.of(new CandidateEntity()));
-        when(jobRespository.findById(jobId)).thenReturn(Optional.of(new JobEntity()));
+        when(candidateRepository.findById(idCandidate)).thenReturn(Optional.of(new CandidateEntity()));
+        when(jobRespository.findById(idJob)).thenReturn(Optional.of(new JobEntity()));
         when(applyJobRepository.save(any(ApplyJobEntity.class))).thenReturn(applyJobCreated);
 
         // THEN
-        var result = applyJobCandidateUseCase.execute(candidateId, jobId);
+        var result = applyJobCandidateUseCase.execute(idCandidate, idJob);
         assertThat(result).hasFieldOrProperty("id");
         assertNotNull(result.getId());
     }

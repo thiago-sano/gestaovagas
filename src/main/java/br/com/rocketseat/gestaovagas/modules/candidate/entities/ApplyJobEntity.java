@@ -42,8 +42,8 @@ public class ApplyJobEntity {
     private JobEntity jobEntity;
 
     @Column(name = "candidate_id")
-    private UUID candidateId;
+    private UUID idCandidate;
 
     @Column(name = "job_id")
-    private UUID jobId;
+    private UUID idJob;
 }
