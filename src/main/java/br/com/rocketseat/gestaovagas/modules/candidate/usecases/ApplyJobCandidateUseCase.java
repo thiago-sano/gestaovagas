@@ -2,6 +2,7 @@ package br.com.rocketseat.gestaovagas.modules.candidate.usecases;
 
 import br.com.rocketseat.gestaovagas.exceptions.JobNotFoundException;
 import br.com.rocketseat.gestaovagas.exceptions.UserNotFoundException;
+import br.com.rocketseat.gestaovagas.modules.candidate.entities.ApplyJobEntity;
 import br.com.rocketseat.gestaovagas.modules.candidate.repositories.ApplyJobRepository;
 import br.com.rocketseat.gestaovagas.modules.candidate.repositories.CandidateRepository;
 import br.com.rocketseat.gestaovagas.modules.company.repositories.JobRespository;
@@ -24,7 +25,7 @@ public class ApplyJobCandidateUseCase {
         this.applyJobRepository = applyJobRepository;
     }
 
-    public void execute(UUID candidateId, UUID jobId) {
+    public ApplyJobEntity execute(UUID candidateId, UUID jobId) {
         // Validar se candidato existe
         candidateRepository.findById(candidateId)
                 .orElseThrow(UserNotFoundException::new);
@@ -34,5 +35,10 @@ public class ApplyJobCandidateUseCase {
                 .orElseThrow(JobNotFoundException::new);
 
         // Candidato se inscreve na vaga
+        var applyJob = ApplyJobEntity.builder()
+                .candidateId(candidateId)
+                .jobId(jobId).build();
+
+        return applyJobRepository.save(applyJob);
     }
 }
