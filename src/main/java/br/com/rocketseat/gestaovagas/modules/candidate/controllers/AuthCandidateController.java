@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Candidato", description = "Informações do candidato")
 public class AuthCandidateController {
 
-    @Autowired
-    private AuthCandidateUseCase authCandidateUseCase;
+    private final AuthCandidateUseCase authCandidateUseCase;
+
+    public AuthCandidateController(AuthCandidateUseCase authCandidateUseCase) {
+        this.authCandidateUseCase = authCandidateUseCase;
+    }
 
     @PostMapping("/auth")
     @Operation(summary = "Autenticação de candidato", description = "Essa função é responsável pela autenticação do candidato")

@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,8 +23,11 @@ import java.util.UUID;
 @RequestMapping("/company/job")
 public class JobController {
 
-    @Autowired
-    private CreateJobUseCase createJobUseCase;
+    private final CreateJobUseCase createJobUseCase;
+
+    public JobController(CreateJobUseCase createJobUseCase) {
+        this.createJobUseCase = createJobUseCase;
+    }
 
     @PostMapping
     @PreAuthorize("hasRole('COMPANY')")

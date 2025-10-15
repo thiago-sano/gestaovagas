@@ -1,10 +1,10 @@
 package br.com.rocketseat.gestaovagas.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,11 +14,9 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private SecurityFilter securityFilter;
+    private final SecurityFilter securityFilter;
 
-    @Autowired
-    private SecurityCandidateFilter securityCandidateFilter;
+    private final SecurityCandidateFilter securityCandidateFilter;
 
     private static final String[] SWAGGER_LIST = {
         "/swagger-ui/**",
@@ -26,10 +24,15 @@ public class SecurityConfig {
         "/swagger-resources/**"
     };
 
+    public SecurityConfig(SecurityFilter securityFilter, SecurityCandidateFilter securityCandidateFilter) {
+        this.securityFilter = securityFilter;
+        this.securityCandidateFilter = securityCandidateFilter;
+    }
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth
                             .requestMatchers("/candidate").permitAll()

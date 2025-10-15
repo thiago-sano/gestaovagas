@@ -5,7 +5,6 @@ import br.com.rocketseat.gestaovagas.modules.company.dto.AuthCompanyResponseDTO;
 import br.com.rocketseat.gestaovagas.modules.company.repositories.CompanyRepository;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,17 +21,18 @@ public class AuthCompanyUseCase {
     @Value("${security.token.secret}")
     private String secretKey;
 
-    @Autowired
-    private CompanyRepository companyRepository;
+    private final CompanyRepository companyRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public AuthCompanyUseCase(CompanyRepository companyRepository, PasswordEncoder passwordEncoder) {
+        this.companyRepository = companyRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public AuthCompanyResponseDTO execute(AuthCompanyDTO authCompanyDTO) throws AuthenticationException {
         var company = this.companyRepository.findByUsername(authCompanyDTO.getUsername()).orElseThrow(
-                () -> {
-                    throw new UsernameNotFoundException("Username/password incorrect");
-                });
+                () -> new UsernameNotFoundException("Username/password incorrect"));
 
         var passwordMatches = this.passwordEncoder.matches(authCompanyDTO.getPassword(), company.getPassword());
         if (!passwordMatches) {
@@ -49,8 +49,8 @@ public class AuthCompanyUseCase {
                 .sign(algorithm);
 
         return AuthCompanyResponseDTO.builder()
-                .access_token(token)
-                .expires_in(expiresIn.toEpochMilli())
+                .accessToken(token)
+                .expiresIn(expiresIn.toEpochMilli())
                 .build();
     }
 }

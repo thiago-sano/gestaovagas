@@ -15,7 +15,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -28,14 +27,17 @@ import java.util.UUID;
 @Tag(name = "Candidato", description = "Informações do candidato")
 public class CandidateController {
 
-    @Autowired
-    private CreateCandidateUseCase createCandidateUseCase;
+    private final CreateCandidateUseCase createCandidateUseCase;
 
-    @Autowired
-    private ProfileCandidateUseCase profileCandidateUseCase;
+    private final ProfileCandidateUseCase profileCandidateUseCase;
 
-    @Autowired
-    private ListAllJobsByFilterUseCase listAllJobsByFilterUseCase;
+    private final ListAllJobsByFilterUseCase listAllJobsByFilterUseCase;
+
+    public CandidateController(CreateCandidateUseCase createCandidateUseCase, ProfileCandidateUseCase profileCandidateUseCase, ListAllJobsByFilterUseCase listAllJobsByFilterUseCase) {
+        this.createCandidateUseCase = createCandidateUseCase;
+        this.profileCandidateUseCase = profileCandidateUseCase;
+        this.listAllJobsByFilterUseCase = listAllJobsByFilterUseCase;
+    }
 
     @PostMapping
     @Operation(summary = "Cadastro de candidato", description = "Essa função é responsável por cadastrar um candidato")

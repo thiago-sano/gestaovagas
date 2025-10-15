@@ -5,7 +5,6 @@ import br.com.rocketseat.gestaovagas.modules.candidate.dto.AuthCandidateResponse
 import br.com.rocketseat.gestaovagas.modules.candidate.repositories.CandidateRepository;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,11 +21,14 @@ public class AuthCandidateUseCase {
     @Value("${security.token.secret.candidate}")
     private String secretKey;
 
-    @Autowired
-    private CandidateRepository candidateRepository;
+    private final CandidateRepository candidateRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public AuthCandidateUseCase(CandidateRepository candidateRepository, PasswordEncoder passwordEncoder) {
+        this.candidateRepository = candidateRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public AuthCandidateResponseDTO execute(AuthCandidateRequestDTO authCandidateRequestDTO) throws AuthenticationException {
         var candidate = this.candidateRepository.findByUsername(authCandidateRequestDTO.username())
@@ -49,8 +51,8 @@ public class AuthCandidateUseCase {
                 .sign(algorithm);
 
         return AuthCandidateResponseDTO.builder()
-                .access_token(token)
-                .expires_in(expiresIn.toEpochMilli())
+                .accessToken(token)
+                .expiresIn(expiresIn.toEpochMilli())
                 .build();
     }
 }
